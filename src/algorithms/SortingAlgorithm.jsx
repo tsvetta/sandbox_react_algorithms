@@ -18,10 +18,8 @@ const SortingAlgorithm = ({ name, fn }) => {
   const [isSorted, setIsSorted] = useState(false);
 
   const onSortClick = useCallback(() => {
-    if (isSorted) return;
-
     console.time(name);
-    const start = Date.now(); // window.performance.now() ?
+    const start = Date.now();
 
     setSortedArr(fn(unsortedArray));
     setIsSorted(true);
@@ -35,9 +33,11 @@ const SortingAlgorithm = ({ name, fn }) => {
   return (
     <>
       <h2>{name}</h2>
-      <button type='button' disabled={isSorted} onClick={onSortClick}>Sort Array</button>
+      <button type='button' disabled={isSorted} onClick={onSortClick}>
+        {isSorted ? <span className="success">Array is sorted!</span> : 'Sort'}
+      </button>
       <p>Duration: {duration}</p>
-      {isSorted && <p className="success">Array is sorted!</p>}
+
       <div className="collaplable">
         <table className="table">
           <thead>
