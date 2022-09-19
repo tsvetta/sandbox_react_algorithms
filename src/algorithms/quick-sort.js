@@ -26,7 +26,7 @@ export const quickSort = arr => {
     // change places
     sortedArr[i] = secondInPair;
     sortedArr[i + 1] = firstInPair;
-    console.count()
+    console.count('Replaced elements')
 
     // sort first part of array in reverse order
     let lastInPair;
@@ -42,7 +42,7 @@ export const quickSort = arr => {
       // change places
       sortedArr[y] = lastInPair;
       sortedArr[y + 1] = prelastInPair;
-      console.count()
+      console.count('Replaced elements')
     }
   }
 
