@@ -10,38 +10,31 @@
 // [2,3,6,{5},7,8,9]
 // [2,3,{5},6,7,8,9]
 
-export const quickSort = arr => {
+export const insertionSort = arr => {
   let sortedArr = [...arr];
-  let firstInPair;
-  let secondInPair;
+  let keyEl;
 
   for (let i = 0; i < arr.length - 1; i++) {
-    firstInPair = sortedArr[i];
-    secondInPair = sortedArr[i + 1];
+    keyEl = sortedArr[i + 1];
 
-    if (firstInPair < secondInPair) {
+    if (sortedArr[i] < keyEl) {
       continue;
     }
 
-    // change places
-    sortedArr[i] = secondInPair;
-    sortedArr[i + 1] = firstInPair;
+    sortedArr[i + 1] = sortedArr[i];
+    sortedArr[i] = keyEl;
     console.count('Replaced elements')
 
     // sort first part of array in reverse order
-    let lastInPair;
-    let prelastInPair;
     for (let y = i - 1; y >= 0; y--) {
-      lastInPair = sortedArr[y + 1];
-      prelastInPair = sortedArr[y];
+      keyEl = sortedArr[y + 1];
 
-      if (prelastInPair < lastInPair) {
+      if (sortedArr[y] < keyEl) {
         continue;
       }
 
-      // change places
-      sortedArr[y] = lastInPair;
-      sortedArr[y + 1] = prelastInPair;
+      sortedArr[y + 1] = sortedArr[y];
+      sortedArr[y] = keyEl;
       console.count('Replaced elements')
     }
   }

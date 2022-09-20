@@ -1,13 +1,13 @@
 import SortingAlgorithm from "./algorithms/SortingAlgorithm";
 
-import { quickSort } from "./algorithms/quick-sort";
+import { insertionSort } from "./algorithms/insertion-sort";
 
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <SortingAlgorithm name="Quick Sort" fn={quickSort} />
+      <SortingAlgorithm name="Insertion Sort" fn={insertionSort} length={10} />
     </div>
   );
 }

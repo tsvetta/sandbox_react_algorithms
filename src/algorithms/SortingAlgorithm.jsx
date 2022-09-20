@@ -4,14 +4,14 @@ import "../App.css";
 
 const formatArr = (arr) => (
   arr.map((n, i) => {
-    return (<Fragment key={i}><br />{n}</Fragment>)
+    return (<Fragment key={i}>{n}<br /></Fragment>)
   })
 );
 
-const createUnsortedArray = () => new Array(100).fill(null).map(() => Math.random() * 10);
+const createUnsortedArray = (length) => () => new Array(length).fill(null).map(() => Math.random() * 10);
 
-const SortingAlgorithm = ({ name, fn }) => {
-  const unsortedArray = useMemo(createUnsortedArray, []);
+const SortingAlgorithm = ({ name, fn, length }) => {
+  const unsortedArray = useMemo(createUnsortedArray(length), []);
 
   const [sortedArr, setSortedArr] = useState(unsortedArray);
   const [duration, setDuration] = useState('0 ms');
