@@ -5,20 +5,19 @@ import react from '@vitejs/plugin-react'
 export default defineConfig(({ command, mode, ssrBuild }) => {
 
   const env = loadEnv(mode, process.cwd(), '')
-
-  console.log(env)
+  // console.log(env);
 
   return {
     plugins: [react()],
     define: {
       // ...env
     },
-    base: '/sandbox_react_algorithms/',
+    base: env.NODE_ENV === 'production' ? '/sandbox_react_algorithms/' : '/public/',
     json: {
       stringify: true
     },
     build: {
-      outDir: 'docs'
+      outDir: 'docs',
     }
   }
 })
