@@ -52,16 +52,27 @@ td, th {
 
 .table-head-row {
   position: fixed;
-  background-color: #fff;
-  box-shadow: 0px 5px 7px -7px #000000;
+  background-color: #242424;
+  box-shadow: 0px 6px 7px -9px #fff;
+  transform: translateY(-4px);
 }
+
+
+
+@media (prefers-color-scheme: light) {
+  .table-head-row {
+    background-color: #fff;
+    box-shadow: 0px 5px 7px -7px #000000;
+  }
+}
+
 
 .table-head-row th {
   width: 205px;
 }
 
 thead {
-  height: 15px;
+  height: 35px;
 }
 
 .success {
