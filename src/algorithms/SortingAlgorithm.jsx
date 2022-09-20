@@ -54,7 +54,7 @@ const SortingAlgorithm = ({ name, fn, length }) => {
 
   // infinite scroll
   const onScroll = useCallback((e) => {
-    const isEnd = sortedArr.length / PAGE_LENGTH === page;
+    const isEnd = length / PAGE_LENGTH === page;
     const { offsetHeight, scrollHeight, scrollTop } = e.target;
     const needNextPage = scrollHeight - offsetHeight === scrollTop;
 
@@ -101,6 +101,7 @@ const SortingAlgorithm = ({ name, fn, length }) => {
           </tbody>
         </table>
       </div>
+      <p>Page: {page}/{length / PAGE_LENGTH}</p>
     </section>
   )
 }
