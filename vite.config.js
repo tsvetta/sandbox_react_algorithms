@@ -13,9 +13,12 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
     define: {
       // ...env
     },
-    base: '/public/',
+    base: '/sandbox_react_algorithms/',
     json: {
       stringify: true
+    },
+    build: {
+      outDir: 'docs'
     }
   }
 })
