@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "deploy": "vite build && git add -A && git commit -m 'New build' && git push",
     "preview": "vite preview",
     "test": "jest __test__"
   },
