@@ -8,7 +8,10 @@ const formatArr = (arr) => (
   })
 );
 
-const createUnsortedArr = (length) => () => new Array(length).fill(null).map(() => Math.random() * 10);
+const createEmptyArr = (length) => new Array(length).fill(null);
+const createUnsortedArr = (length) => () => createEmptyArr(length).map(() => Math.random() * 10);
+const createSortedArr = (length) => () => createEmptyArr(length).map((_, i) => i);
+const createReversedSortedArr = (length) => () => createEmptyArr(length).map((_, i) => length - i);
 
 const SortingAlgorithm = ({ name, fn, length }) => {
   const [unsortedArr, setUnsortedArr] = useState(createUnsortedArr(length));
@@ -26,16 +29,28 @@ const SortingAlgorithm = ({ name, fn, length }) => {
     setSortedArr(sortedArr);
     setIsSorted(true);
     setDuration((end - start).toFixed(1) + ' ms');
-  }, [unsortedArr, isSorted]);
+  }, [name, fn, unsortedArr]);
 
   const onRefreshClick = useCallback(() => {
     setUnsortedArr(createUnsortedArr(length));
     setSortedArr([]);
     setIsSorted(false);
-  });
+  }, [length]);
+
+  const onMinTimeSortClick = useCallback(() => {
+    setUnsortedArr(createSortedArr(length));
+    setSortedArr([]);
+    setIsSorted(false);
+  }, [length]);
+
+  const onMaxTimeSortClick = useCallback(() => {
+    setUnsortedArr(createReversedSortedArr(length));
+    setSortedArr([]);
+    setIsSorted(false);
+  }, [length]);
 
   return (
-    <>
+    <section className="algorithm-section">
       <h2>{name}</h2>
       <button type='button' disabled={isSorted} onClick={onSortClick}>
         {isSorted ? <span className="success">Array is sorted!</span> : 'Sort'}
@@ -43,9 +58,16 @@ const SortingAlgorithm = ({ name, fn, length }) => {
       <button type='button' onClick={onRefreshClick}>
         Generate new array
       </button>
+      <br />
+      <button type='button' onClick={onMinTimeSortClick}>
+        Create boundary case: MIN time
+      </button>
+      <button type='button' onClick={onMaxTimeSortClick}>
+        Create boundary case: MAX time
+      </button>
       <p>Duration: {duration}</p>
 
-      <div className="collaplable">
+      <div className="collapsable">
         <table className="table">
           <thead>
             <tr className="table-head-row">
@@ -65,7 +87,7 @@ const SortingAlgorithm = ({ name, fn, length }) => {
           </tbody>
         </table>
       </div>
-    </>
+    </section>
   )
 }
 
