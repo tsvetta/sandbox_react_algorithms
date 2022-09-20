@@ -1,11 +1,13 @@
-import { useState, useCallback, useMemo, Fragment } from "react";
+import { useState, useCallback, Fragment } from "react";
 
 import "../App.css";
 
-const formatArr = (arr) => (
+const PAGE_LENGTH = 10;
+
+const getFormatterArrPage = (arr, page = 1) => (
   arr.map((n, i) => {
     return (<Fragment key={i}>{n}<br /></Fragment>)
-  })
+  }).splice(0, PAGE_LENGTH * page)
 );
 
 const createEmptyArr = (length) => new Array(length).fill(null);
@@ -18,6 +20,7 @@ const SortingAlgorithm = ({ name, fn, length }) => {
   const [sortedArr, setSortedArr] = useState(unsortedArr);
   const [duration, setDuration] = useState('0 ms');
   const [isSorted, setIsSorted] = useState(false);
+  const [page, setPage] = useState(1);
 
   const onSortClick = useCallback(() => {
     console.time(name);
@@ -49,6 +52,17 @@ const SortingAlgorithm = ({ name, fn, length }) => {
     setIsSorted(false);
   }, [length]);
 
+  // infinite scroll
+  const onScroll = useCallback((e) => {
+    const isEnd = sortedArr.length / PAGE_LENGTH === page;
+    const { offsetHeight, scrollHeight, scrollTop } = e.target;
+    const needNextPage = scrollHeight - offsetHeight === scrollTop;
+
+    if (needNextPage && !isEnd) {
+      setPage(page + 1);
+    }
+  });
+
   return (
     <section className="algorithm-section">
       <h2>{name}</h2>
@@ -67,7 +81,7 @@ const SortingAlgorithm = ({ name, fn, length }) => {
       </button>
       <p>Duration: {duration}</p>
 
-      <div className="collapsable">
+      <div className="collapsable" onScroll={onScroll}>
         <table className="table">
           <thead>
             <tr className="table-head-row">
@@ -78,10 +92,10 @@ const SortingAlgorithm = ({ name, fn, length }) => {
           <tbody>
             <tr>
               <td>
-                {formatArr(unsortedArr)}
+                {getFormatterArrPage(unsortedArr, page)}
               </td>
               <td>
-                {isSorted && formatArr(sortedArr)}
+                {isSorted && getFormatterArrPage(sortedArr, page)}
               </td>
             </tr>
           </tbody>
