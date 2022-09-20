@@ -7,7 +7,7 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <SortingAlgorithm name="Insertion Sort" fn={insertionSort} length={10} />
+      <SortingAlgorithm name="Insertion Sort" fn={insertionSort} length={1000} />
     </div>
   );
 }

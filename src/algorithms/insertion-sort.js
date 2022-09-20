@@ -23,7 +23,6 @@ export const insertionSort = arr => {
 
     sortedArr[i + 1] = sortedArr[i];
     sortedArr[i] = keyEl;
-    console.count('Replaced elements')
 
     // sort first part of array in reverse order
     for (let y = i - 1; y >= 0; y--) {
@@ -35,7 +34,6 @@ export const insertionSort = arr => {
 
       sortedArr[y + 1] = sortedArr[y];
       sortedArr[y] = keyEl;
-      console.count('Replaced elements')
     }
   }
 
