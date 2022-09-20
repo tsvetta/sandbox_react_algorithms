@@ -1,4 +1,4 @@
-import { useState, useCallback, Fragment } from "react";
+import { useState, useCallback, useRef, useLayoutEffect, Fragment } from "react";
 
 import "../App.css";
 
@@ -21,6 +21,14 @@ const SortingAlgorithm = ({ name, fn, length }) => {
   const [duration, setDuration] = useState('0 ms');
   const [isSorted, setIsSorted] = useState(false);
   const [page, setPage] = useState(1);
+  const scrollableEl = useRef(null);
+
+  const resetScroll = useCallback(() => {
+    setPage(1);
+    scrollableEl.current.scrollTop = 0;
+  });
+
+  useLayoutEffect(resetScroll, [unsortedArr])
 
   const onSortClick = useCallback(() => {
     console.time(name);
@@ -81,7 +89,7 @@ const SortingAlgorithm = ({ name, fn, length }) => {
       </button>
       <p>Duration: {duration}</p>
 
-      <div className="collapsable" onScroll={onScroll}>
+      <div className="scrollable" ref={scrollableEl} onScroll={onScroll}>
         <table className="table">
           <thead>
             <tr className="table-head-row">

@@ -81,7 +81,7 @@ thead {
   color: #2ca913;
 }
 
-.collapsable {
+.scrollable {
   max-height: 200px;
   overflow-y: scroll;
 }
