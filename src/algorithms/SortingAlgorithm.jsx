@@ -48,13 +48,13 @@ const SortingAlgorithm = ({ name, fn, length }) => {
     setIsSorted(false);
   }, [length]);
 
-  const onMinTimeSortClick = useCallback(() => {
+  const onCreateSortedClick = useCallback(() => {
     setUnsortedArr(createSortedArr(length));
     setSortedArr([]);
     setIsSorted(false);
   }, [length]);
 
-  const onMaxTimeSortClick = useCallback(() => {
+  const onCreateReversedClick = useCallback(() => {
     setUnsortedArr(createReversedSortedArr(length));
     setSortedArr([]);
     setIsSorted(false);
@@ -78,14 +78,14 @@ const SortingAlgorithm = ({ name, fn, length }) => {
         {isSorted ? <span className="success">Array is sorted!</span> : 'Sort'}
       </button>
       <button type='button' onClick={onRefreshClick}>
-        Generate new array
+        Generate random array
       </button>
       <br />
-      <button type='button' onClick={onMinTimeSortClick}>
-        Create boundary case: MIN time
+      <button type='button' onClick={onCreateSortedClick}>
+        Create sorted array
       </button>
-      <button type='button' onClick={onMaxTimeSortClick}>
-        Create boundary case: MAX time
+      <button type='button' onClick={onCreateReversedClick}>
+        Create reversed array
       </button>
       <p>Duration: {duration}</p>
 
