@@ -5,8 +5,7 @@
 }
 
 .App {
-  overflow: auto;
-  white-space: nowrap;
+  width: 100%;
 }
 
 .logo {
@@ -88,6 +87,7 @@ thead {
 
 .algorithm-section {
   display: inline-block;
+  width: 30%;
 }
 
 .algorithm-section + .algorithm-section {
