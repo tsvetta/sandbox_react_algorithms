@@ -7,7 +7,7 @@
     "dev": "vite",
     "go": "vite build && git add -A && git commit -m 'New build' && git push",
     "preview": "vite preview",
-    "test": "jest __test__"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest __tests__"
   },
   "dependencies": {
     "react": "^18.2.0",
